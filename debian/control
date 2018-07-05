@@ -20,7 +20,7 @@ Build-Depends: debhelper (>= 9.20141221~),
 Homepage: http://www.oracle.com/technology/software/products/berkeley-db/index.html
 Vcs-Browser: http://anonscm.debian.org/?p=pkg-db/db5.3.git
 Vcs-Git: git://anonscm.debian.org/pkg-db/db5.3.git
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ jessie
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ stretch
 
 Package: db5.3-doc
 Architecture: all
