@@ -4,7 +4,7 @@ Priority: standard
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Debian Berkeley DB Group <pkg-db-devel@lists.alioth.debian.org>
 XSBC-Pexip-Original-Uploaders: Ondřej Surý <ondrej@debian.org>, Dmitrijs Ledkovs <xnox@debian.org>
-Standards-Version: 3.9.3
+Standards-Version: 3.9.6
 # For cross building one also needs tcl8.4:native (ie. such that it
 # can be executed to pre-process sqlite3 components).
 # For DEB_STAGE=stage1 build tcl-dev, javahelper, default-jdk,
@@ -17,8 +17,8 @@ Build-Depends: debhelper (>= 9.20141221~),
 	       javahelper [!m68k],
 	       default-jdk [!m68k],
 	       gcj-native-helper [!m68k]
-Homepage: http://www.oracle.com/technology/software/products/berkeley-db/index.html
-Vcs-Browser: http://anonscm.debian.org/?p=pkg-db/db5.3.git
+Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-db/db5.3.git
 Vcs-Git: git://anonscm.debian.org/pkg-db/db5.3.git
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ stretch
 

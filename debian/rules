@@ -246,11 +246,14 @@ ifeq ($(ENABLE_TCL),yes)
 	tcltk-depends
 endif
 
-override_dh_installdocs:
+override_dh_installdocs-indep:
 	dh_installdocs -pdb5.3-doc -plibdb5.3-java
-	dh_installdocs --remaining-packages --link-doc=libdb5.3
+
+override_dh_installdocs-arch:
+	dh_installdocs --link-doc=libdb5.3
 ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 	# Install build_signature_$(DEB_HOST_ARCH).txt to docs
+	mkdir -p $(CURDIR)/debian/libdb5.3/usr/share/doc/libdb5.3/
 	install -m 644 debian/build_signature_$(DEB_HOST_ARCH).txt $(CURDIR)/debian/libdb5.3/usr/share/doc/libdb5.3/
 endif
 
