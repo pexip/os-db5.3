@@ -1,10 +1,61 @@
-db5.3 (5.3.28-12+deb9u1) stretch; urgency=medium
+db5.3 (5.3.28+dfsg1-0.5) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Update Vcs-*.
+
+ -- Andrej Shadura <andrewsh@debian.org>  Tue, 26 Feb 2019 09:46:07 +0100
+
+db5.3 (5.3.28+dfsg1-0.4) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Update the team email (Closes: #899921).
+
+ -- Andrej Shadura <andrewsh@debian.org>  Tue, 26 Feb 2019 08:53:49 +0100
+
+db5.3 (5.3.28+dfsg1-0.3) unstable; urgency=medium
+
+  [ Helmut Grohne ]
+  * Non-maintainer upload.
+  * Use build profiles. (Closes: #869952)
+
+ -- Andrej Shadura <andrewsh@debian.org>  Thu, 31 Jan 2019 15:26:11 +0100
+
+db5.3 (5.3.28+dfsg1-0.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Re-enable Java bindings on m68k. (Closes: #906240)
+
+ -- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>  Sun, 09 Sep 2018 09:33:40 +0200
+
+db5.3 (5.3.28+dfsg1-0.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Repack the .orig tarball to eliminate prebuilt binaries that need a
+    Visual Studio plugin to build from source. (Closes: #898215)
+  * Fix FTBFS with Java 9, thanks Markus Koschany. (Closes: #873976)
+  * Fix FTBFS with Java 10 (bogus version detection).
+  * Fix FTBFS with GCC-8 (__atomic_compare_exchange).
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 09 Aug 2018 01:12:06 +0200
+
+db5.3 (5.3.28-13.1) unstable; urgency=medium
 
   * Non-maintainer upload.
   * CVE-2017-10140: Reads DB_CONFIG from the current working directory.
     Do not access DB_CONFIG when db_home is not set. (Closes: #872436)
 
- -- Salvatore Bonaccorso <carnil@debian.org>  Sun, 24 Sep 2017 09:14:53 +0200
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 17 Aug 2017 14:35:22 +0200
+
+db5.3 (5.3.28-13) unstable; urgency=medium
+
+  * Use https url for Vcs-Browser
+  * Bump debhelper compatibility level to 10
+  * Disable building gcj (Courtesy of Emmanuel Bourg)
+    (Closes: #865117, #672464)
+  * Remove maintscript parameters from the maintscript
+    (Closes: #839953)
+
+ -- Ondřej Surý <ondrej@debian.org>  Thu, 13 Jul 2017 09:09:25 +0200
 
 db5.3 (5.3.28-12) unstable; urgency=medium
 

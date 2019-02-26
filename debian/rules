@@ -13,35 +13,21 @@ export DH_ALWAYS_EXCLUDE=.arch-ids
 include /usr/share/dpkg/architecture.mk
 
 # Don't try to build this file if missing
-/usr/share/gcj/debian_defaults /usr/share/javahelper/java-vars.mk:
+/usr/share/javahelper/java-vars.mk:
 	:
 
--include /usr/share/gcj/debian_defaults
 -include /usr/share/javahelper/java-vars.mk
 
-JAVA_BROKEN_ARCHS = m68k
-GCJ_BROKEN_ARCHS = 
-GCJ_NATIVE_ARCHS = $(filter-out $(GCJ_BROKEN_ARCHS), $(gcj_native_archs))
+JAVA_BROKEN_ARCHS =
 
 ENABLE_JAVA=no
-ENABLE_GCJ=no
 
 ifeq (,$(filter $(DEB_HOST_ARCH), $(JAVA_BROKEN_ARCHS)))
   ENABLE_JAVA=yes
-ifneq (,$(filter $(DEB_HOST_ARCH), $(GCJ_NATIVE_ARCHS)))
-  ENABLE_GCJ=yes
-else
-  # work around bug #719842 in javahelper
-  ENABLE_JAVA=no
-endif
 endif
 
-ifeq ($(DEB_STAGE),stage1)
+ifneq (,$(filter nojava,$(DEB_BUILD_PROFILES)))
   ENABLE_JAVA=no
-  ENABLE_GCJ=no
-  ENABLE_TCL=no
-else
-  ENABLE_TCL=yes
 endif
 
 CONFIGURE_SWITCHES =    --prefix=/usr \
@@ -55,7 +41,7 @@ CONFIGURE_SWITCHES =    --prefix=/usr \
 			--enable-stl \
 			--enable-dbm
 
-ifeq ($(ENABLE_TCL),yes)
+ifeq (,$(filter pkg.db5.3.notcl,$(DEB_BUILD_PROFILES)))
   ENABLE_TESTS=yes
   CONFIGURE_SWITCHES += --enable-tcl
 ifneq (,$(wildcard /usr/lib/$(DEB_HOST_MULTIARCH)/tcl*))
@@ -69,18 +55,8 @@ else
   DH_OPTIONS += -Nlibdb5.1-tcl
 endif
 
-ifneq ($(DEB_BUILD_ARCH),$(DEB_HOST_ARCH))
+ifneq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
   ENABLE_TESTS=no
-endif
-
-ifneq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-  ENABLE_TESTS=no
-endif
-
-ifeq ($(ENABLE_TESTS),yes)
-  CONFIGURE_SWITCHES += --enable-test
-else
-  CONFIGURE_SWITCHES += --disable-test
 endif
 
 ifeq (zx86_64-linux-gnuz,z$(DEB_HOST_GNU_TYPE)z)
@@ -91,28 +67,22 @@ CONFIGURE_SWITCHES += --enable-posixmutexes
 endif
 
 ifeq (yes,$(ENABLE_JAVA))
-JAVACFLAGS=-source 1.5 -target 1.5
+JAVACFLAGS=-source 1.7 -target 1.7
 JAVA_HOME ?= /usr/lib/jvm/default-java
 CFLAGS += -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 CONFIGURE_SWITCHES += --enable-java
 DH_PLUGINS += --with=javahelper
 else
 CONFIGURE_SWITCHES += --disable-java
-DH_OPTIONS += -Nlibdb5.3-java -Nlibdb5.3-java-dev -Nlibdb5.3-java-gcj -Nlibdb5.3-java-jni
 endif
 
-ifeq (no,$(ENABLE_GCJ))
-DH_OPTIONS += -Nlibdb5.3-java-gcj
-endif
-
-ifeq (no,$(ENABLE_SQL))
-DH_OPTIONS += -Nlibdb5.1-sql
+ifneq (,$(filter pkg.db5.3.nosql,$(DEB_BUILD_PROFILES)))
   CONFIGURE_SWITCHES += --disable-sql
 endif
 
 
 BROKEN_CPUS = zs390z
-VERY_BROKEN_CPUS = zm68kz zhppaz
+VERY_BROKEN_CPUS = zhppaz
 BROKEN_SYSTEMS = zgnuz
 VERY_BROKEN_SYSTEMS =
 
@@ -153,13 +123,13 @@ override_dh_auto_configure:
 	cd dist && libtoolize -cfi
 	cd lang/sql/sqlite && libtoolize -cfi
 	cd dist && ./s_config
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+ifeq ($(ENABLE_TESTS),yes)
 	JAVACFLAGS="$(JAVACFLAGS)" dh_auto_configure -Ddist -Bbuild-test -- $(CONFIGURE_SWITCHES) --enable-test
 endif
 	JAVACFLAGS="$(JAVACFLAGS)" dh_auto_configure -Ddist -Bbuild-production -- $(CONFIGURE_SWITCHES) --disable-test
 
 override_dh_auto_clean:
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+ifeq ($(ENABLE_TESTS),yes)
 	dh_auto_clean -Ddist -Bbuild-test
 endif
 	dh_auto_clean -Ddist -Bbuild-production
@@ -180,7 +150,7 @@ endif
 
 override_dh_auto_test:
 ifeq (,$(findstring z$(DEB_BUILD_GNU_CPU)z,$(VERY_BROKEN_CPUS))$(findstring z$(DEB_BUILD_GNU_SYSTEM)z,$(VERY_BROKEN_SYSTEMS)))
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+ifeq ($(ENABLE_TESTS),yes)
 	cd build-test && make cutest && ./cutest
 	echo 'source ../test/tcl/test.tcl; run_std;' | tclsh
 
@@ -224,7 +194,7 @@ ifeq ($(DEB_HOST_ARCH),$(DEB_BUILD_ARCH))
 
 	echo -n "Berkeley DB signature is:"; $(CURDIR)/debian/db_signature
 
-ifneq ($(DEB_STAGE),stage1)
+ifneq (,$(filter nojava pkg.db5.3.notcl,$(DEB_BUILD_PROFILES)))
 	if [ -f $(CURDIR)/debian/saved_signature_$(DEB_HOST_ARCH).txt ]; then \
 	    cmp $(CURDIR)/debian/saved_signature_$(DEB_HOST_ARCH).txt         \
 	        $(CURDIR)/debian/build_signature_$(DEB_HOST_ARCH).txt         \
@@ -242,7 +212,7 @@ endif
 
 override_dh_install:
 	dh_install -a -Xusr/doc --list-missing
-ifeq ($(ENABLE_TCL),yes)
+ifeq (,$(filter pkg.db5.3.notcl,$(DEB_BUILD_PROFILES)))
 	tcltk-depends
 endif
 
@@ -268,7 +238,4 @@ override_dh_clean:
 override_jh_installlibs:
 ifeq (yes,$(ENABLE_JAVA))
 	jh_installlibs
-endif
-ifeq (yes,$(ENABLE_GCJ))
-	dh_nativejava
 endif
