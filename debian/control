@@ -2,24 +2,21 @@ Source: db5.3
 Section: libs
 Priority: standard
 Maintainer: Pexip AS <packaging@pexip.com>
-XSBC-Pexip-Original-Maintainer: Debian Berkeley DB Group <pkg-db-devel@lists.alioth.debian.org>
+XSBC-Pexip-Original-Maintainer: Debian Berkeley DB Team <team+bdb@tracker.debian.org>
 XSBC-Pexip-Original-Uploaders: Ondřej Surý <ondrej@debian.org>, Dmitrijs Ledkovs <xnox@debian.org>
 Standards-Version: 3.9.6
-# For cross building one also needs tcl8.4:native (ie. such that it
-# can be executed to pre-process sqlite3 components).
-# For DEB_STAGE=stage1 build tcl-dev, javahelper, default-jdk,
-# gcj-native-helper can be dropped
-Build-Depends: debhelper (>= 9.20141221~),
-	       autotools-dev (>= 20100122.1),
+# For DEB_STAGE=stage1 build tcl-dev, javahelper, default-jdk can be dropped
+Build-Depends: debhelper (>= 10),
+	       autotools-dev,
 	       dh-autoreconf,
-	       tcl-dev,
-	       procps [!hurd-i386],
-	       javahelper [!m68k],
-	       default-jdk [!m68k],
-	       gcj-native-helper [!m68k]
+	       tcl <cross !pkg.db5.3.notcl>,
+	       tcl-dev <!pkg.db5.3.notcl>,
+	       procps [!hurd-i386] <!nocheck>,
+	       javahelper <!nojava>,
+	       default-jdk <!nojava>
 Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-db/db5.3.git
-Vcs-Git: git://anonscm.debian.org/pkg-db/db5.3.git
+Vcs-Browser: https://salsa.debian.org/debian/db5.3
+Vcs-Git: https://salsa.debian.org/debian/db5.3.git
 XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: db5.3-doc
@@ -120,6 +117,7 @@ Priority: extra
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Conflicts: libdb4.6-tcl, libdb4.7-tcl, libdb4.8-tcl, libdb5.1-tcl, libdb5.2-tcl
+Build-Profiles: <!pkg.db5.3.notcl>
 Depends: ${tcl:Depends},
 	 ${shlibs:Depends},
 	 ${misc:Depends}
@@ -148,6 +146,7 @@ Pre-Depends: ${misc:Pre-Depends}
 Breaks: libdb5.3-java (<< ${source:Version})
 Conflicts: libdb5.1-java, libdb5.2-java
 Multi-Arch: same
+Build-Profiles: <!nojava>
 Description: Berkeley v5.3 Database Libraries for Java
  This package provides the Java interface for the Berkeley v5.3 database
  library.
@@ -160,24 +159,11 @@ Depends: libdb5.3-java-jni (>= ${source:Version}),
 	 ${shlibs:Depends},
 	 ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
-Suggests: libdb5.3-java-gcj
 Multi-Arch: foreign
+Build-Profiles: <!nojava>
 Description: Berkeley v5.3 Database Libraries for Java
  This package provides the Java interface for the Berkeley v5.3 database
  library.
-
-Package: libdb5.3-java-gcj
-Architecture: any
-Section: java
-Priority: optional
-Depends: libdb5.3-java (= ${source:Version}),
-	 ${shlibs:Depends},
-	 ${misc:Depends}
-Description: Berkeley v5.3 Database Libraries for Java (native code)
- This package provides the Java interface for the Berkeley v5.3 database
- library.
- .
- This package contains the natively compiled code for use by gij.
 
 Package: libdb5.3-java-dev
 Architecture: any
@@ -187,6 +173,7 @@ Depends: libdb5.3-java (= ${source:Version}),
 	 ${shlibs:Depends},
 	 ${misc:Depends}
 Conflicts: libdb4.6-java-dev, libdb4.7-java-dev, libdb4.8-java-dev, libdb5.1-java-dev, libdb5.2-java-dev
+Build-Profiles: <!nojava>
 Description: Berkeley v5.3 Database Libraries for Java [development]
  This package provides the Java interface for the Berkeley v5.3 database
  library.
@@ -210,6 +197,7 @@ Depends: ${shlibs:Depends},
 	 ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
+Build-Profiles: <!pkg.db5.3.nosql>
 Description: Berkeley v5.3 Database Libraries [SQL runtime]
  This is the runtime package for programs that use the v5.3 Berkeley
  database SQL library.

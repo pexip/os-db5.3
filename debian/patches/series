@@ -7,3 +7,5 @@
 mmap_extend-mode-requires-page-aligned-extends.patch
 008-autoconf-in-lang-sql-sqlite.patch
 CVE-2017-10140-cwd-db_config.patch
+009-java-10.patch
+010-__atomic_compare_exchange.patch
