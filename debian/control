@@ -2,7 +2,7 @@ Source: db5.3
 Section: libs
 Priority: standard
 Maintainer: Debian Berkeley DB Team <team+bdb@tracker.debian.org>
-Uploaders: Ondřej Surý <ondrej@debian.org>, Dmitrijs Ledkovs <xnox@debian.org>
+Uploaders: Ondřej Surý <ondrej@debian.org>
 Standards-Version: 3.9.6
 # For DEB_STAGE=stage1 build tcl-dev, javahelper, default-jdk can be dropped
 Build-Depends: debhelper (>= 10),
