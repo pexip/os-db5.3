@@ -3,7 +3,7 @@ Section: libs
 Priority: standard
 Maintainer: Pexip AS <packaging@pexip.com>
 XSBC-Pexip-Original-Maintainer: Debian Berkeley DB Team <team+bdb@tracker.debian.org>
-XSBC-Pexip-Original-Uploaders: Ondřej Surý <ondrej@debian.org>, Dmitrijs Ledkovs <xnox@debian.org>
+XSBC-Pexip-Original-Uploaders: Ondřej Surý <ondrej@debian.org>
 Standards-Version: 3.9.6
 # For DEB_STAGE=stage1 build tcl-dev, javahelper, default-jdk can be dropped
 Build-Depends: debhelper (>= 10),
