@@ -1,3 +1,9 @@
+db5.3 (5.3.28+dfsg1-0.8pexip3) pexip-bullseye; urgency=medium
+
+  * Bullseye rebuild for ARM64 inclusion
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 05 Sep 2022 10:31:26 +0100
+
 db5.3 (5.3.28+dfsg1-0.8pexip2) pexip-bullseye; urgency=medium
 
   * Main bullseye build
