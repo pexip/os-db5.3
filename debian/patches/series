@@ -11,3 +11,4 @@ CVE-2017-10140-cwd-db_config.patch
 010-__atomic_compare_exchange.patch
 0012-Don-t-expo-progname-symbol.patch
 0014-Use-one-object-for-shqueue.h-test.patch
+CVE-2019-8457.patch
