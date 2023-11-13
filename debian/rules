@@ -108,7 +108,7 @@ RECONF_FILES=dist/config.hin \
              $(patsubst %,lang/sql/sqlite/%,$(LIBTOOL_AUX_FILES))
 
 %:
-	dh $@ --with=autotools-dev $(DH_PLUGINS)
+	dh $@ $(DH_PLUGINS)
 
 override_dh_auto_configure:
 	if [ ! -d $(CURDIR)/debian/s_config ]; then \

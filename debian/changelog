@@ -1,3 +1,30 @@
+db5.3 (5.3.28+dfsg2-1) unstable; urgency=medium
+
+  * Eliminate a shell script that has a non-free license
+  * d/copyright: Join redundant Comments
+  * Adopt the package (Closes: #1014386)
+
+ -- Bastian Germann <bage@debian.org>  Mon, 16 Jan 2023 21:25:20 +0100
+
+db5.3 (5.3.28+dfsg1-0.10) unstable; urgency=medium
+
+  * Non-maintainer upload
+  * d/changelog: Correct bug reference
+  * Remove alien lintian tags
+  * Convert Priority: extra to optional
+  * d/copyright: Convert to machine-readable format (Closes: #781011)
+  * Remove dh compat 9 leftovers
+
+ -- Bastian Germann <bage@debian.org>  Thu, 30 Jun 2022 21:41:48 +0200
+
+db5.3 (5.3.28+dfsg1-0.9) unstable; urgency=medium
+
+  [ Dave Jones ]
+  * SECURITY UPDATE: Heap out-of-bounds read
+    Closes: #1010974, CVE-2019-8457.
+
+ -- Andrej Shadura <andrewsh@debian.org>  Sat, 14 May 2022 11:56:39 +0200
+
 db5.3 (5.3.28+dfsg1-0.8pexip3) pexip-bullseye; urgency=medium
 
   * Bullseye rebuild for ARM64 inclusion

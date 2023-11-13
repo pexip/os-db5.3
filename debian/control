@@ -1,14 +1,11 @@
 Source: db5.3
 Section: libs
-Priority: standard
+Priority: optional
 Maintainer: Pexip AS <packaging@pexip.com>
-XSBC-Pexip-Original-Maintainer: Debian Berkeley DB Team <team+bdb@tracker.debian.org>
-XSBC-Pexip-Original-Uploaders: Ondřej Surý <ondrej@debian.org>
+XSBC-Pexip-Original-Maintainer: Bastian Germann <bage@debian.org>
 Standards-Version: 3.9.6
 # For DEB_STAGE=stage1 build tcl-dev, javahelper, default-jdk can be dropped
 Build-Depends: debhelper (>= 10),
-	       autotools-dev,
-	       dh-autoreconf,
 	       tcl <cross !pkg.db5.3.notcl>,
 	       tcl-dev <!pkg.db5.3.notcl>,
 	       procps [!hurd-i386] <!nocheck>,
@@ -22,7 +19,6 @@ XS-Pexip-Upstream: http://deb.debian.org/debian/ bookworm
 Package: db5.3-doc
 Architecture: all
 Section: doc
-Priority: optional
 Depends: ${misc:Depends}
 Description: Berkeley v5.3 Database Documentation [html]
  This package contains documentation in HTML format for all of
@@ -32,7 +28,6 @@ Description: Berkeley v5.3 Database Documentation [html]
 Package: libdb5.3-dev
 Architecture: any
 Section: libdevel
-Priority: extra
 Depends: libdb5.3 (= ${binary:Version}),
 	 ${misc:Depends}
 Suggests: db5.3-doc
@@ -44,6 +39,7 @@ Description: Berkeley v5.3 Database Libraries [development]
 Package: libdb5.3
 Architecture: any
 Multi-Arch: same
+Priority: standard
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
@@ -54,7 +50,6 @@ Description: Berkeley v5.3 Database Libraries [runtime]
 Package: db5.3-util
 Architecture: any
 Section: database
-Priority: optional
 Multi-Arch: foreign
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
@@ -78,7 +73,6 @@ Description: Berkeley v5.3 Database Utilities
 Package: db5.3-sql-util
 Architecture: any
 Section: database
-Priority: extra
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
 Description: Berkeley v5.3 SQL Database Utilities
@@ -92,7 +86,6 @@ Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
-Priority: optional
 Description: Berkeley v5.3 Database Libraries for C++ [runtime]
  This is the runtime package for programs that use the Berkeley v5.3
  database library.  This is only for programs which use the C++ interface.
@@ -100,7 +93,6 @@ Description: Berkeley v5.3 Database Libraries for C++ [runtime]
 Package: libdb5.3++-dev
 Architecture: any
 Section: libdevel
-Priority: extra
 Depends: libdb5.3++ (= ${binary:Version}),
 	 libdb5.3-dev (= ${binary:Version}),
 	 ${misc:Depends}
@@ -113,7 +105,6 @@ Description: Berkeley v5.3 Database Libraries for C++ [development]
 Package: libdb5.3-tcl
 Architecture: any
 Section: interpreters
-Priority: extra
 Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Conflicts: libdb4.6-tcl, libdb4.7-tcl, libdb4.8-tcl, libdb5.1-tcl, libdb5.2-tcl
@@ -128,7 +119,6 @@ Description: Berkeley v5.3 Database Libraries for Tcl [module]
 Package: libdb5.3-dbg
 Architecture: any
 Section: debug
-Priority: extra
 Depends: libdb5.3 (= ${binary:Version}),
 	 ${misc:Depends}
 Multi-Arch: same
@@ -139,7 +129,6 @@ Description: Berkeley v5.3 Database Libraries [debug]
 Package: libdb5.3-java-jni
 Architecture: any
 Section: java
-Priority: optional
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
@@ -154,7 +143,6 @@ Description: Berkeley v5.3 Database Libraries for Java
 Package: libdb5.3-java
 Architecture: all
 Section: java
-Priority: optional
 Depends: libdb5.3-java-jni (>= ${source:Version}),
 	 ${shlibs:Depends},
 	 ${misc:Depends}
@@ -168,7 +156,6 @@ Description: Berkeley v5.3 Database Libraries for Java
 Package: libdb5.3-java-dev
 Architecture: any
 Section: libdevel
-Priority: optional
 Depends: libdb5.3-java (= ${source:Version}),
 	 ${shlibs:Depends},
 	 ${misc:Depends}
@@ -181,7 +168,6 @@ Description: Berkeley v5.3 Database Libraries for Java [development]
 Package: libdb5.3-sql-dev
 Architecture: any
 Section: libdevel
-Priority: extra
 Depends: libdb5.3-sql (= ${binary:Version}),
 	 ${misc:Depends}
 Conflicts: libdb5.1-sql-dev, libdb5.2-sql-dev
@@ -192,7 +178,6 @@ Description: Berkeley v5.3 Database Libraries [SQL development]
 
 Package: libdb5.3-sql
 Architecture: any
-Priority: extra
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
@@ -205,7 +190,6 @@ Description: Berkeley v5.3 Database Libraries [SQL runtime]
 Package: libdb5.3-stl-dev
 Architecture: any
 Section: libdevel
-Priority: extra
 Depends: libdb5.3-stl (= ${binary:Version}),
 	 ${misc:Depends}
 Conflicts: libdb5.1-stl-dev, libdb5.2-stl-dev
@@ -216,7 +200,6 @@ Description: Berkeley v5.3 Database Libraries [STL development]
 
 Package: libdb5.3-stl
 Architecture: any
-Priority: extra
 Depends: ${shlibs:Depends},
 	 ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
