@@ -1,3 +1,9 @@
+db5.3 (5.3.28+dfsg2-1pexip1) pexip-bookworm; urgency=medium
+
+  * Initial bookworm build
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 16 Nov 2023 09:57:18 +0000
+
 db5.3 (5.3.28+dfsg2-1) unstable; urgency=medium
 
   * Eliminate a shell script that has a non-free license
