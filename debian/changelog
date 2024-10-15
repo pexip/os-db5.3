@@ -1,3 +1,86 @@
+db5.3 (5.3.28+dfsg2-9) unstable; urgency=medium
+
+  * QA upload.
+  * Fix the "64-bit integral type support for sequences"
+    autoconf test with gcc 14.
+
+ -- Adrian Bunk <bunk@debian.org>  Tue, 15 Oct 2024 14:40:15 +0300
+
+db5.3 (5.3.28+dfsg2-8) unstable; urgency=medium
+
+  * QA upload
+
+  [ Samuel Thibault ]
+  * control: Generalize hurd-i386 into hurd-any.
+
+  [ Bastian Germann ]
+  * Fix FTBFS because of implicit-int (Closes: #1084782)
+  * Fix OPD checkpoint deadlock (Closes: #932758)
+
+ -- Bastian Germann <bage@debian.org>  Thu, 10 Oct 2024 11:54:04 +0200
+
+db5.3 (5.3.28+dfsg2-7) unstable; urgency=medium
+
+  [ Bastian Germann ]
+  * Compile db_signature with expected flags
+
+  [ Thorsten Glaser ]
+  * QA upload.
+  * Fix misuse of struct timespec (buffer overflow on ILP32 t64
+    architectures, more on big endian); with help from Bernhard
+    Übelacker (Closes: #1067639)
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sat, 13 Apr 2024 15:12:36 +0200
+
+db5.3 (5.3.28+dfsg2-6) unstable; urgency=medium
+
+  * QA upload
+  * debian/patches: Add missing #include to fix configure check (Closes:
+    #1066003)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 20 Mar 2024 21:33:34 +0100
+
+db5.3 (5.3.28+dfsg2-5) unstable; urgency=medium
+
+  * debian/rules: fix remaining references to libdb5.3 that make the -dev
+    package uninstallable.
+
+ -- Steve Langasek <vorlon@debian.org>  Thu, 29 Feb 2024 00:30:51 +0000
+
+db5.3 (5.3.28+dfsg2-4.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1062020
+
+ -- Michael Hudson-Doyle <mwhudson@debian.org>  Wed, 28 Feb 2024 01:11:42 +0000
+
+db5.3 (5.3.28+dfsg2-4) unstable; urgency=medium
+
+  * QA upload
+  * Add db5.3_tuner (Closes: #1055722)
+
+ -- Bastian Germann <bage@debian.org>  Fri, 10 Nov 2023 14:13:50 +0100
+
+db5.3 (5.3.28+dfsg2-3) unstable; urgency=medium
+
+  * Orphan the package
+
+ -- Bastian Germann <bage@debian.org>  Sat, 04 Nov 2023 20:55:49 +0100
+
+db5.3 (5.3.28+dfsg2-2) unstable; urgency=medium
+
+  * d/watch: Drop non-existing website
+  * Demote libdb5.3's Priority to optional
+  * Apply Rules-Requires-Root (Closes: #1043077)
+  * Drop java and tcl packages (Closes: #650844)
+  * Rename wrongly prefixed patches
+  * Drop sql and stl packages (Closes: #1010974, #928441, #715779)
+
+  [ Debian Janitor ]
+  * db5.3-doc: Add Multi-Arch: foreign.
+
+ -- Bastian Germann <bage@debian.org>  Sun, 06 Aug 2023 15:50:06 +0200
+
 db5.3 (5.3.28+dfsg2-1) unstable; urgency=medium
 
   * Eliminate a shell script that has a non-free license

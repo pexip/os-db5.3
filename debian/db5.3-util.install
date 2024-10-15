@@ -9,5 +9,6 @@ usr/bin/db5.3_printlog
 usr/bin/db5.3_recover
 usr/bin/db5.3_replicate
 usr/bin/db5.3_stat
+usr/bin/db5.3_tuner
 usr/bin/db5.3_upgrade
 usr/bin/db5.3_verify
