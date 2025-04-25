@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 10),
 Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
 Vcs-Browser: https://salsa.debian.org/debian/db5.3
 Vcs-Git: https://salsa.debian.org/debian/db5.3.git
-XS-Pexip-Upstream: http://deb.debian.org/debian/ bookworm
+XS-Pexip-Upstream: http://deb.debian.org/debian/ trixie
 
 Package: db5.3-doc
 Architecture: all
